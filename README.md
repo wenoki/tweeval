@@ -32,7 +32,7 @@ a status will be posted by tweeval immediately.
 
 if you want to "raw" output...
 
-    -e --raw "Go".tap {|item| rand(20).times {item.concat "go"}}
+    -e --raw "Go".tap {|item| rand(20).times {item.concat " go"}}
 
     Go go go go go go go go go go go go
 
