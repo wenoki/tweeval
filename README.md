@@ -32,9 +32,9 @@ a status will be posted by tweeval immediately.
 
 if you want to "raw" output...
 
-    -e --raw "I'd like to have a #{["pancake", "cookie", "creampie"].sample}."
+    -e --raw "Go".tap {|item| rand(20).times {item.concat "go"}}
 
-    I'd like to have a cookie.
+    Go go go go go go go go go go go go
 
 @ reply/mention is also accepted...
 
