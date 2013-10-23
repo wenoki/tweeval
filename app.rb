@@ -48,9 +48,6 @@ EventMachine.run do
     next if status.retweet?
     next unless status.user.id.to_s == twitter_user_id
 
-    p status.inspect
-    p status.methods
-
     if status.text.match /\A(@\w+\s)*-e\s((--\w+\s)*)(.+)\z/m
       expr = Regexp.last_match[4] || ""
       mentions = Regexp.last_match[1] || ""
