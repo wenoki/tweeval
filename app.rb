@@ -5,7 +5,8 @@ require "twitter"
 require "tweetstream"
 require "logger"
 
-require "date"
+require "active_support/all"
+require "randexp"
 
 twitter_consumer_key = ENV["CLIENT_CONSUMER_KEY"]
 twitter_consumer_secret = ENV["CLIENT_CONSUMER_SECRET"]
@@ -70,17 +71,13 @@ EventMachine.run do
       "@#{status.from_user} => #{result.inspect}"
     end
 
-    tweet = case [options.include?(:raw), status.reply?]
-    when [true, true]
-      rest.update mentions + text, in_reply_to_status_id: status.in_reply_to_tweet_id
-    when [true, false]
-      rest.update mentions + text
-    when [false, true]
-      rest.update mentions + text, in_reply_to_status_id: status.id
-    else
-      rest.update mentions + text, in_reply_to_status_id: status.id
+    in_reply_to = case [options.include?(:raw), status.reply?]
+    when [true, true] then status.in_reply_to_tweet_id
+    when [true, false] then nil
+    else status.id
     end
 
+    tweet = rest.update mentions + text, in_reply_to_status_id: in_reply_to
     log.info "tweeted: #{tweet.text}" if tweet
   end
 end

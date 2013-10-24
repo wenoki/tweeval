@@ -14,10 +14,10 @@ run on local
 deploy to heroku
 -----------
 
-    $ heroku apps:create
-    $ heroku config:set CLIENT_CONSUMER_KEY=<your consumer key> CLIENT_CONSUMER_SECRET=<your consumer secret> CLIENT_ACCESS_TOKEN=<your access token> CLIENT_ACCESS_TOKEN_SECRET=<your access token secret> CLIENT_USER_ID=<your twitter user id>
-    $ git push heroku master
-    $ heroku ps:scale bot=1
+    heroku apps:create
+    heroku config:set CLIENT_CONSUMER_KEY=<your consumer key> CLIENT_CONSUMER_SECRET=<your consumer secret> CLIENT_ACCESS_TOKEN=<your access token> CLIENT_ACCESS_TOKEN_SECRET=<your access token secret> CLIENT_USER_ID=<your twitter user id>
+    git push heroku master
+    heroku ps:scale bot=1
 
 usage
 -----------
@@ -39,3 +39,7 @@ if you want to "raw" output...
 @ reply/mention is also accepted...
 
     @someone -e ["Sweet Dreams!", "Goodnight!"].sample
+
+and "self-destruction" mode...
+
+    -e --raw --destroy "Original tweet has been destroyed at #{DateTime.now}"
