@@ -68,7 +68,7 @@ EventMachine.run do
     text = if options.include? :raw
       result.to_s
     else
-      "@#{status.from_user} => #{result.inspect}"
+      "# => #{result.inspect}"
     end
 
     in_reply_to = case [options.include?(:raw), status.reply?]
